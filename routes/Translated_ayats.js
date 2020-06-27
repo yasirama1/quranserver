@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const cors = require('cors')
 const {translated_ayats} = require('../models')
+const {surats} = require('../models')
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const quranService = require('../services/quranService') 
@@ -76,6 +77,18 @@ router.get('/test', async (req, res) => {
   try{
     var quran = await quranService(114)
     res.send(quran.data.data)
+  }
+  catch (err) {
+    res.status(500).send({
+      error: err.message
+    })
+  }
+})
+
+router.get('/getSuratList', async (req, res) => {
+  try{
+    var quran = await surats.findAll()
+    res.send(quran)
   }
   catch (err) {
     res.status(500).send({
