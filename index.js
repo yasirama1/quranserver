@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(morgan('combined'))
 app.use(cors())
 
-
+console.log(config)
 
 
 
